@@ -22,10 +22,11 @@ app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = process.env.NODE_ENV === 'production' 
   ? [
       'https://babyshower-upload-frontend.onrender.com',
-      'https://babyshower-upload.onrender.com',
+      'https://babyshower-upload-backend.onrender.com',
+      'https://*.onrender.com', // Allow any Render subdomain
       process.env.FRONTEND_URL // Allow custom domain if set
     ].filter(Boolean)
-  : ['http://localhost:5173', 'http://127.0.0.1:5173'];
+  : ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:5174', 'http://127.0.0.1:5174'];
 
 app.use(cors({
   origin: function (origin, callback) {
