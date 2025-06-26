@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
 import { google } from 'googleapis';
@@ -29,7 +29,7 @@ const allowedOrigins = process.env.NODE_ENV === 'production'
   : ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:5174', 'http://127.0.0.1:5174'];
 
 app.use(cors({
-  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+  origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
@@ -53,7 +53,7 @@ const upload = multer({
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB limit
   },
-  fileFilter: (req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+  fileFilter: (req, file, cb) => {
     console.log('File filter check:', file.mimetype);
     if (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/')) {
       cb(null, true);
@@ -83,7 +83,7 @@ if (serviceAccountKey && process.env.GOOGLE_DRIVE_FOLDER_ID) {
 }
 
 // Test endpoint to verify server is working
-app.get('/test', (req: Request, res: Response): void => {
+app.get('/test', (req, res) => {
   res.json({ 
     message: 'Server is working!',
     timestamp: new Date().toISOString(),
@@ -98,21 +98,18 @@ app.get('/test', (req: Request, res: Response): void => {
 });
 
 // Upload endpoint
-app.post('/upload', upload.single('file'), async (req: Request, res: Response): Promise<void> => {
+app.post('/upload', upload.single('file'), async (req, res) => {
   console.log('Upload request received');
   try {
     if (!req.file) {
       console.log('No file in request');
-      res.status(400).json({ error: 'No file uploaded' });
-      return;
+      return res.status(400).json({ error: 'No file uploaded' });
     }
     if (!drive) {
-      res.status(500).json({ error: 'Google Drive not configured. Service account key or folder ID missing.' });
-      return;
+      return res.status(500).json({ error: 'Google Drive not configured. Service account key or folder ID missing.' });
     }
     if (!process.env.GOOGLE_DRIVE_FOLDER_ID) {
-      res.status(500).json({ error: 'Google Drive folder ID not set in environment variables.' });
-      return;
+      return res.status(500).json({ error: 'Google Drive folder ID not set in environment variables.' });
     }
     console.log('File received:', {
       originalname: req.file.originalname,
