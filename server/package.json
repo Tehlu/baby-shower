@@ -1,0 +1,30 @@
+{
+  "name": "babyshower-upload-server",
+  "version": "1.0.0",
+  "description": "Backend server for baby shower memory upload website",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon index.ts",
+    "build": "tsc",
+    "preview": "vite preview",
+    "server": "cd server && npm run dev",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "googleapis": "^118.0.0",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^18.15.11",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
