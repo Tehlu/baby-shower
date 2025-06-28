@@ -73,7 +73,7 @@ function App() {
             disabled={isUploading}
           />
           <div className="px-6 py-3 bg-magical-pink bg-opacity-80 hover:bg-opacity-100 text-white rounded-full font-body transition-all duration-300 transform hover:scale-105">
-            {isUploading ? 'Uploading...' : 'Upload Your Photo or Video'}
+            {isUploading ? 'Uploading...' : 'Upload Your Photo'}
           </div>
         </label>
 
