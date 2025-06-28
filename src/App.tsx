@@ -87,8 +87,8 @@ function App() {
 
       {/* Copyright claim */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
-        <p className="text-white text-[10px] font-body bg-black bg-opacity-50 px-2 py-0.5 rounded-full">
-          © 2025 Beza Mogese - Freelance Developer
+        <p className="text-white text-[10px] font-body bg-black bg-opacity-50 px-2 py-0.5 rounded-full inline-block">
+          © 2025 Beza Mogese <span className="hidden sm:inline">-</span> Freelance Developer
         </p>
       </div>
     </div>
