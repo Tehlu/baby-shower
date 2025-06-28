@@ -23,6 +23,7 @@ const allowedOrigins = process.env.NODE_ENV === 'production'
   ? [
       'https://babyshower-upload-frontend.onrender.com',
       'https://babyshower-upload-backend.onrender.com',
+      'https://littlebutterfly.onrender.com',
       'https://*.onrender.com', // Allow any Render subdomain
       process.env.FRONTEND_URL // Allow custom domain if set
     ].filter(Boolean)
