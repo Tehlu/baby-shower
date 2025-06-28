@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import couplePhoto from './assets/jayliParent.jpg'
+import couplePhoto from './assets/jayliParent2.jpg'
 
 function App() {
   const [isUploading, setIsUploading] = useState(false)
